@@ -1815,6 +1815,11 @@
       }
 
       @media (max-width: 768px) {
+        .fade-section {
+          opacity: 1;
+          transform: none;
+          filter: none;
+        }
         body {
           padding-top: 88px;
         }
@@ -3509,7 +3514,9 @@
 
     // Keep role order consistent: Leads first, then Associates on next row.
     document.querySelectorAll(".domain__team").forEach(function (team) {
-      var cards = Array.from(team.querySelectorAll(":scope > .team__card"));
+      var cards = Array.from(team.children).filter(function (node) {
+        return node.classList && node.classList.contains("team__card");
+      });
       if (!cards.length) return;
 
       var leads = [];
