@@ -1,0 +1,3769 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>TEDxSRMIST</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+      :root {
+        --primary-color: #000000;
+        --primary-color-light: #0c0c0d;
+        --primary-color-extra-light: #970604;
+        --secondary-color: #640202;
+        --secondary-color-dark: #890101;
+        --text_light: #d1d5db;
+        --white: #ffffff;
+        --max-width: 1200px;
+        --surface-1: rgba(12, 12, 13, 0.86);
+        --surface-2: rgba(18, 18, 19, 0.94);
+        --surface-border: rgba(255, 0, 0, 0.18);
+        --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
+        --shadow-red: 0 14px 38px rgba(137, 1, 1, 0.25);
+        --radius-lg: 18px;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background:
+          radial-gradient(circle at 12% 10%, rgba(130, 0, 0, 0.2) 0%, transparent 40%),
+          radial-gradient(circle at 85% 30%, rgba(90, 0, 0, 0.16) 0%, transparent 34%),
+          linear-gradient(180deg, #060606 0%, #0a0909 42%, #080808 100%);
+        overflow-x: hidden;
+        position: relative;
+        cursor: none;
+        padding-top: 100px;
+        line-height: 1.65;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none;  /* Safari/Chrome */
+        -moz-user-select: none;     /* Firefox (older) */
+        -ms-user-select: none;      /* Internet Explorer/Edge */
+        user-select: none;  
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 4px 4px;
+        pointer-events: none;
+        z-index: -3;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.5));
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .cursor-glow {
+        position: fixed;
+        width: 14px;
+        height: 14px;
+        background: #8b0000; /* dark red */
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        transition: transform 0.1s ease;
+      }
+
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .particles span {
+        position: absolute;
+        bottom: -10px;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 0, 0, 0.7);
+        border-radius: 50%;
+        animation: floatUp linear infinite;
+      }
+
+      @keyframes floatUp {
+        from {
+          transform: translateY(0) translateX(0) scale(1);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-120vh) translateX(100px) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      .section__container {
+        max-width: var(--max-width);
+        margin: auto;
+        padding: 5.5rem 1.5rem;
+        position: relative;
+        border-radius: var(--radius-lg);
+        transition: all 0.3s ease;
+      }
+
+      .container-wide {
+        width: min(92vw, 1500px);
+        max-width: 1500px;
+        margin: 0 auto;
+      }
+
+      .fade-section,
+      .join__container,
+      .team__container,
+      .explore__container,
+      .class__container,
+      .footer__container {
+        background: linear-gradient(180deg, var(--surface-1) 0%, var(--surface-2) 100%);
+        border: 1px solid var(--surface-border);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .section__header {
+        margin-bottom: 1.5rem;
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-weight: 600;
+        text-align: center;
+        color: var(--white);
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .section__header::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: var(--secondary-color);
+        border-radius: 5px;
+      }
+
+      .section__subheader {
+        max-width: 760px;
+        margin: auto;
+        text-align: center;
+        color: var(--text_light);
+        line-height: 1.8;
+      }
+
+      .btn {
+        padding: 0.95rem 1.9rem;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+        color: var(--white);
+        background: linear-gradient(145deg, #7a0404, #540101);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: var(--shadow-red);
+        letter-spacing: 0.3px;
+      }
+
+      .btn:hover {
+        background: linear-gradient(145deg, #930808, #610202);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(137, 1, 1, 0.4);
+      }
+
+      img {
+        width: 100%;
+        display: flex;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .bg__blur {
+        position: absolute;
+        box-shadow: 0 0 1000px 50px var(--secondary-color);
+        z-index: -1;
+      }
+
+      /* Fixed navigation styles to ensure buttons are clickable */
+      nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: min(92vw, 1320px);
+      max-width: 1320px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.6rem;
+
+      background: rgba(15, 15, 15, 0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border: 1px solid rgba(255, 0, 0, 0.28);
+      border-radius: 14px;
+
+      box-shadow: 0 10px 40px rgba(255, 0, 0, 0.22);
+
+      z-index: 999;
+    }
+
+      .nav__logo {
+        max-width: 165px;
+        position: relative;
+        z-index: 101; /* Ensure logo is clickable */
+      }
+
+      .nav__links {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 2.25rem;
+        position: relative;
+        z-index: 101; /* Ensure links are clickable */
+      }
+
+      .link a {
+        position: relative;
+        padding-bottom: 0.75rem;
+        color: var(--white);
+        font-weight: 500;
+        font-size: 0.98rem;
+        transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+      }
+
+      .link a::after {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 0;
+        left: 0;
+        bottom: 0;
+        background-color: var(--secondary-color);
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+      }
+
+      .link a:hover {
+        color: var(--secondary-color);
+      }
+
+      .link a:hover::after {
+        width: 50%;
+      }
+
+      /* Fixed header container to ensure proper layering */
+      .header__container {
+        position: relative;
+        padding-top: 2.5rem;
+        min-height: calc(100vh - 120px);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 4rem;
+        z-index: 1; /* Lower z-index than nav */
+      }
+
+      .header__blur {
+        bottom: 5rem;
+        right: 0;
+      }
+
+      .header__content {
+        position: relative;
+        z-index: 2; /* Ensure content is above background elements */
+      }
+
+      .header__content h4 {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+      }
+
+      .header__content h1 {
+        margin-bottom: 1rem;
+        font-size: clamp(3.6rem, 8vw, 5.4rem);
+        font-weight: 700;
+        line-height: 1.08;
+        color: var(--white);
+      }
+
+      .header__content h1 span {
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1px var(--white);
+      }
+
+      .header__content p {
+        margin-bottom: 2rem;
+        color: var(--text_light);
+        line-height: 1.8;
+        max-width: 62ch;
+      }
+
+      /* Fixed header image positioning */
+      .header__image {
+        position: relative;
+        z-index: 1; /* Lower z-index than nav */
+      }
+
+      .header__image::before {
+        content: "o";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 40rem;
+        font-weight: 400;
+        line-height: 20rem;
+        color: var(--secondary-color);
+        opacity: 0.1;
+        z-index: -1;
+      }
+
+      .header__image img {
+        max-width: 420px;
+        margin: auto;
+        filter: drop-shadow(0 10px 20px rgba(137, 1, 1, 0.3));
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+      }
+
+      .header__image:hover img {
+        transform: translateY(-10px);
+      }
+
+      .explore__header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .explore__nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .explore__nav span {
+        padding: 0 6px;
+        font-size: 1.5rem;
+        color: var(--white);
+        border: 2px solid var(--white);
+        border-radius: 100%;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+      }
+
+      .explore__nav span:hover {
+        color: var(--secondary-color);
+        border-color: var(--secondary-color);
+      }
+
+      /* Improved speaker section for smoother horizontal scroll */
+      .explore__container {
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 3rem;
+      }
+
+      .explore__grid {
+        display: flex;
+        gap: 2rem;
+        padding: 2rem 0.5rem;
+        animation: scroll 30s linear infinite;
+        width: max-content;
+        will-change: transform; /* Performance optimization */
+      }
+
+      .explore__grid:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-250px * 7 - 14rem));
+        }
+      }
+
+      /* Improved speaker card flip effect */
+      .explore__card {
+        flex: 0 0 250px;
+        background: linear-gradient(180deg, #131316 0%, #09090a 100%);
+        border-radius: 14px;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+        height: 400px;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 0, 0, 0.18);
+        transform: translateY(0);
+        perspective: 1000px;
+        position: relative;
+        will-change: transform; /* Performance optimization */
+      }
+
+      .explore__card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+        transform-style: preserve-3d;
+        will-change: transform; /* Performance optimization */
+      }
+
+      .explore__card:hover .explore__card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+      }
+
+      .card-back {
+        background: linear-gradient(160deg, #121214 0%, #1a0606 100%);
+        color: var(--white);
+        transform: rotateY(180deg);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .explore__card img {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+      }
+
+      .explore__card h4 {
+        padding: 0.95rem 0.8rem;
+        color: var(--white);
+        font-size: 1.05rem;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .explore__card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 15px 35px rgba(255, 0, 0, 0.3);
+        border-color: var(--secondary-color);
+      }
+
+      /* Fixed class container styles */
+      .class__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .class__image {
+        position: relative;
+        min-height: 500px;
+        z-index: 1;
+      }
+
+      .class__image .class__img-1 {
+        position: absolute;
+        right: 0;
+        top: 0;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(137, 1, 1, 0.3);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+        z-index: 1;
+      }
+
+      .class__image .class__img-2 {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        max-width: 350px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(137, 1, 1, 0.3);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+        z-index: 2;
+      }
+
+      .class__image:hover .class__img-1 {
+        transform: translateY(-10px);
+      }
+
+      .class__image:hover .class__img-2 {
+        transform: translateY(10px);
+      }
+
+      .class__content {
+        padding: 2rem 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      .class__content .section__header {
+        text-align: left;
+        max-width: 400px;
+        transform: none;
+        left: 0;
+      }
+
+      .class__content .section__header::after {
+        left: 25%;
+      }
+
+      .class__content p {
+        margin-bottom: 2.2rem;
+        color: var(--text_light);
+        line-height: 1.8;
+      }
+      
+      /* Improved Timer Styles */
+      .timer-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 2.2rem 0;
+        flex-wrap: wrap;
+      }
+      .timer-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(7px);
+        padding: 0.95rem;
+        border-radius: 12px;
+        width: 92px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .timer-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      }
+      
+      .timer-value {
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 0.25rem;
+      }
+      .timer-label {
+        font-size: 0.75rem;
+        color: var(--text_light);
+        text-transform: uppercase;
+      }
+      
+      /* Center the Buy Ticket button in the Mosaic section */
+      #mosaic .class__content .btn {
+        display: block;
+        width: fit-content;
+        margin: 2rem auto 0;
+      }
+
+      .join__image {
+        margin-top: 3rem;
+        position: relative;
+      }
+
+      .join__container {
+        padding-bottom: 9rem;
+      }
+
+      .join__image img {
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .join__grid {
+        position: absolute;
+        bottom: -5rem;
+        width: calc(100% - 4rem);
+        padding: 2rem;
+        margin: 0 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        background: linear-gradient(180deg, rgba(20, 20, 22, 0.96) 0%, rgba(11, 11, 12, 0.96) 100%);
+        border-radius: 14px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 0, 0, 0.2);
+        z-index: 3;
+      }
+
+      .join__card {
+        flex: 1 1 250px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.45rem;
+        border-radius: 10px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .join__card:hover {
+        transform: translateY(-5px);
+      }
+
+      .join__card span {
+        padding: 12px;
+        font-size: 1.75rem;
+        color: var(--white);
+        background-color: var(--secondary-color-dark);
+        border-radius: 50%;
+        box-shadow: 0 5px 15px rgba(137, 1, 1, 0.3);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .join__card:hover span {
+        transform: scale(1.1);
+      }
+
+      .join__card h4 {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--white);
+      }
+
+      .join__card p { 
+        color: var(--text_light); 
+        line-height: 1.4; 
+      }
+
+      .team__container {
+        text-align: center;
+        padding-top: 4.4rem;
+      }
+
+      .team__header {
+        position: relative;
+        margin-bottom: 3rem;
+      }
+
+      .team__header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .team__header::after {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 4px;
+        background-color: var(--secondary-color);
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .team__hierarchy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+        margin-bottom: 5rem;
+      }
+
+      .president__level {
+        width: 300px;
+        position: relative;
+      }
+
+      .president__level::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 50px;
+        background-color: var(--secondary-color);
+        bottom: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .vice__presidents {
+        display: flex;
+        gap: 3rem;
+        justify-content: center;
+        position: relative;
+      }
+
+      .vice__presidents::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: var(--secondary-color);
+        top: -25px;
+        left: 0;
+      }
+
+      .domain__tabs {
+        display: flex;
+        justify-content: center;
+        margin: 2.4rem 0 1.8rem;
+        border-bottom: 1px solid rgba(100, 2, 2, 0.3);
+        padding-bottom: 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .domain__tab {
+        padding: 0.75rem 1.5rem;
+        background-color: transparent;
+        color: var(--text_light);
+        border: 1px solid rgba(100, 2, 2, 0.3);
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: 0 0.25rem;
+      }
+
+      .domain__tab:hover {
+        color: var(--white);
+        border-color: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      .domain__tab.active {
+        background-color: var(--secondary-color);
+        color: var(--white);
+        border-color: var(--secondary-color);
+        box-shadow: 0 5px 15px rgba(137, 1, 1, 0.3);
+      }
+
+      .domain__content {
+        margin-top: 2rem;
+        position: relative;
+        min-height: 400px;
+      }
+
+      .domain__section {
+        padding: 2.2rem;
+        background-color: rgba(12, 12, 13, 0.62);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(100, 2, 2, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: none;
+        animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .domain__section.active {
+        display: block;
+      }
+
+      .domain__title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 2.5rem;
+        position: relative;
+        display: inline-block;
+      }
+      .success-message-banner {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #0c0c0d;
+        color: #fff;
+        padding: 20px;
+        border: 2px solid #640202;
+        border-radius: 8px;
+        z-index: 1000;
+        text-align: center;
+      }
+      .success-message-banner.show {
+        display: block;
+      }
+      .close-banner {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+      }
+      /* Enhanced Responsive Styles for Registration Form */
+      @media (max-width: 1024px) {
+        .registration-container {
+          max-width: 90%;
+        }
+        
+        .registration-form {
+          grid-template-columns: 1fr;
+        }
+        
+        .form-group.full-width {
+          grid-column: span 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .registration-header {
+          height: 150px;
+        }
+        
+        .registration-header h2 {
+          font-size: 1.8rem;
+          bottom: 15px;
+          left: 20px;
+        }
+        
+        .registration-content {
+          padding: 1.5rem;
+        }
+        
+        .registration-description {
+          font-size: 0.95rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .mobile-verification {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        
+        .mobile-verification .verify-btn {
+          width: 100%;
+        }
+        
+        .terms-container {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        
+        .terms-container input {
+          margin-top: 0.2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .registration-container {
+          margin: 0 1rem;
+          max-width: calc(100% - 2rem);
+        }
+        
+        .registration-header {
+          height: 120px;
+        }
+        
+        .registration-header h2 {
+          font-size: 1.5rem;
+          bottom: 10px;
+          left: 15px;
+        }
+        
+        .registration-content {
+          padding: 1rem;
+        }
+        
+        .form-group {
+          margin-bottom: 0.75rem;
+        }
+        
+        .form-group label {
+          font-size: 0.9rem;
+          margin-bottom: 0.3rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.9rem;
+        }
+        
+        .payment-btn {
+          padding: 0.8rem;
+          font-size: 1rem;
+        }
+        
+        .close-registration {
+          top: 10px;
+          right: 10px;
+          width: 35px;
+          height: 35px;
+          font-size: 1.2rem;
+        }
+        
+        .terms-container label {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Fix for very small screens */
+      @media (max-width: 350px) {
+        .registration-header h2 {
+          font-size: 1.3rem;
+        }
+        
+        .registration-description {
+          font-size: 0.85rem;
+        }
+        
+        .form-group label {
+          font-size: 0.85rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+          padding: 0.5rem 0.7rem;
+          font-size: 0.85rem;
+        }
+        
+        .payment-btn {
+          padding: 0.7rem;
+          font-size: 0.95rem;
+        }
+      }
+
+      /* Improve form accessibility and touch targets on mobile */
+      @media (max-width: 768px) {
+        .form-group input,
+        .form-group select,
+        .form-group textarea,
+        .verify-btn,
+        .payment-btn {
+          min-height: 44px; /* Minimum touch target size */
+        }
+        
+        /* Improve checkbox usability on mobile */
+        .terms-container {
+          padding: 0.5rem;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 5px;
+        }
+        
+        .terms-container input[type="checkbox"] {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      /* Fix for iOS devices */
+      @supports (-webkit-touch-callout: none) {
+        .registration-modal {
+          position: fixed;
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+          font-size: 16px; /* Prevent zoom on iOS */
+        }
+      }
+      
+      .domain__title::after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background-color: var(--secondary-color);
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+      }
+
+      .domain__team {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        align-items: stretch;
+      }
+
+      .domain__team .team__card {
+        flex: 0 1 250px;
+        max-width: 280px;
+      }
+
+      .domain__team .role-break {
+        flex-basis: 100%;
+        width: 100%;
+        height: 0;
+        padding: 0;
+        margin: 0;
+      }
+
+      /* REDESIGNED Team Cards with Black & White to Color Effect */
+      .team__card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        background-color: var(--primary-color-light);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        z-index: 1;
+        border: 2px solid transparent;
+        will-change: transform, box-shadow; /* Performance optimization */
+      }
+
+      .team__card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: 2;
+        transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .team__card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        border-color: var(--secondary-color);
+      }
+
+      /* Black & White to Color Effect */
+      .team__card img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: grayscale(100%);
+        will-change: transform, filter; /* Performance optimization */
+      }
+
+      .team__card:hover img {
+        transform: scale(1.05);
+        filter: grayscale(0%);
+      }
+
+      /* Improved Overlay Effect */
+      .team__card:hover::before {
+        background: linear-gradient(to bottom, 
+                    transparent 50%, 
+                    rgba(30, 30, 30, 0.8) 90%, 
+                    rgba(40, 40, 40, 0.9) 100%);
+      }
+
+      .team__info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem;
+        z-index: 3;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        padding-top: 3rem;
+        text-align: center;
+      }
+
+      .team__card:hover .team__info {
+        transform: translateY(-5px);
+        background: linear-gradient(to top, 
+                    rgba(30, 30, 30, 0.9), 
+                    rgba(40, 40, 40, 0.7) 60%, 
+                    transparent);
+      }
+
+      .team__card h4 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .team__card p {
+        color: var(--white);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background-color: var(--secondary-color);
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        margin-top: 0.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .team__social {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        z-index: 4;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .team__card:hover .team__social {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .team__social a {
+        width: 32px;
+        height: 32px;
+        background-color: var(--secondary-color);
+        color: var(--white);
+        border-radius: 50%;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      .team__social a:hover {
+        transform: scale(1.1);
+        background-color: var(--secondary-color-dark);
+      }
+
+      /* Redesigned Organizer Section */
+      .organizer {
+        background: linear-gradient(135deg, #0c0c0d 0%, #1a0101 100%);
+        padding: 6.5rem 0;
+        margin-top: 5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .organizer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+      }
+
+      .organizer__container {
+        display: flex;
+        align-items: stretch;
+        gap: 4rem;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .organizer__image {
+        flex: 0 0 350px;
+        position: relative;
+      }
+      .nocopy {
+        user-select: none; /* Prevent text selection */
+        -webkit-user-select: none; /* Safari, iOS */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        pointer-events: none; /* Prevents interactions */
+      }
+
+      .organizer__image::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 100%;
+        height: 100%;
+        border: 2px solid var(--secondary-color);
+        border-radius: 10px;
+        z-index: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .organizer__image:hover::before {
+        top: -10px;
+        left: -10px;
+      }
+
+      .organizer__image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .organizer__image:hover img {
+        transform: scale(1.02);
+      }
+
+      .organizer__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 0, 0, 0.18);
+        border-radius: 14px;
+        padding: 2rem;
+      }
+
+      .organizer__title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .organizer__title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background-color: var(--secondary-color);
+      }
+
+      .organizer__quote {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: var(--text_light);
+        margin-bottom: 2rem;
+        position: relative;
+        padding-left: 1.5rem;
+        border-left: 3px solid var(--secondary-color);
+        font-style: italic;
+      }
+
+      .organizer__name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .organizer__position {
+        color: var(--text_light);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+
+      .organizer__social {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .organizer__social a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .organizer__social a:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-5px);
+      }
+
+      .footer__container {
+        position: relative;
+        display: grid;
+        grid-template-columns: 400px repeat(3, 1fr);
+        gap: 3rem;
+        padding-top: 5rem;
+      }
+
+      .footer__blur {
+        bottom: 0;
+        right: 0;
+      }
+
+      .footer__logo {
+        max-width: 150px;
+        margin-bottom: 2rem;
+      }
+
+      .footer__col p {
+        margin-bottom: 2rem;
+        color: var(--text_light);
+        line-height: 1.8;
+      }
+
+      .footer__socials {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .footer__socials a {
+        padding: 10px;
+        font-size: 1.25rem;
+        color: var(--secondary-color);
+        border: 1px solid var(--secondary-color);
+        border-radius: 50%;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .footer__socials a:hover {
+        color: var(--white);
+        background-color: var(--secondary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(137, 1, 1, 0.3);
+      }
+
+      .footer__col h4 {
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--white);
+        position: relative;
+        display: inline-block;
+      }
+
+      .footer__col h4::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: var(--secondary-color);
+        bottom: -10px;
+        left: 0;
+      }
+
+      .footer__col > a {
+        display: block;
+        margin-bottom: 1rem;
+        color: var(--text_light);
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .footer__col > a::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--secondary-color);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer__col > a:hover {
+        color: var(--secondary-color);
+        transform: translateX(5px);
+      }
+
+      .footer__col > a:hover::before {
+        opacity: 1;
+      }
+
+      .footer__bar {
+        max-width: var(--max-width);
+        margin: auto;
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+        color: var(--text_light);
+        text-align: center;
+        border-top: 1px solid rgba(100, 2, 2, 0.2);
+        margin-top: 0.8rem;
+      }
+
+      /* Fixed hamburger menu styles */
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        z-index: 1000;
+        position: relative;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px 0;
+        background: var(--white);
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .close-menu {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+        color: var(--white);
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1000;
+        display: none;
+      }
+
+      .nav__links.active .close-menu {
+        display: block;
+      }
+
+      /* Improved Registration Form Modal with Better Scrolling */
+      .registration-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        z-index: 2000;
+        overflow-y: auto;
+        padding: 2rem 0;
+        overscroll-behavior: contain;
+      }
+
+      .registration-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        background: linear-gradient(135deg, #0c0c0d 0%, #1a0101 100%);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border: 1px solid rgba(255, 0, 0, 0.25);
+      }
+
+      .registration-header {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .registration-header img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .registration-header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(to top, #0c0c0d, transparent);
+      }
+
+      .registration-header h2 {
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+        color: var(--white);
+        font-size: 2.5rem;
+        font-weight: 700;
+        z-index: 10;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+      }
+
+      .registration-content {
+        padding: 2rem;
+        max-height: 70vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--secondary-color) rgba(0, 0, 0, 0.2);
+      }
+
+      .registration-content::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .registration-content::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+      }
+
+      .registration-content::-webkit-scrollbar-thumb {
+        background-color: var(--secondary-color);
+        border-radius: 10px;
+      }
+
+      .registration-description {
+        color: var(--text_light);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        font-size: 1.1rem;
+      }
+
+      .registration-form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group.full-width {
+        grid-column: span 2;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--white);
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        color: var(--white);
+        font-family: "Poppins", sans-serif;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .mobile-verification {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .mobile-verification input {
+        flex: 1;
+      }
+
+      .verify-btn {
+        padding: 0.75rem 1.5rem;
+        background-color: var(--secondary-color);
+        color: var(--white);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .verify-btn:hover {
+        background-color: var(--secondary-color-dark);
+      }
+
+      .terms-container {
+        margin: 2rem 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .terms-container input {
+        margin-top: 0.3rem;
+      }
+
+      .terms-container label {
+        color: var(--text_light);
+        font-size: 0.9rem;
+      }
+
+      .terms-container a {
+        color: var(--secondary-color);
+        text-decoration: underline;
+      }
+
+      .payment-btn {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--secondary-color);
+        color: var(--white);
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .payment-btn:hover {
+        background-color: var(--secondary-color-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(137, 1, 1, 0.3);
+      }
+
+      .close-registration {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        color: var(--white);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 20;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .close-registration:hover {
+        background-color: var(--secondary-color);
+        transform: rotate(90deg);
+      }
+
+      /* Success Message Styles */
+      .success-message {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #0c0c0d 0%, #1a0101 100%);
+        border: 2px solid var(--secondary-color);
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        z-index: 3000;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      .success-message h3 {
+        color: var(--white);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .success-message p {
+        color: var(--text_light);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .success-message .icon {
+        font-size: 4rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+        display: inline-block;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .success-message .btn {
+        margin-top: 1rem;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1024px) {
+        .header__container {
+          grid-template-columns: 1fr;
+        }
+        .header__image {
+          grid-row: 1;
+        }
+        .class__container {
+          grid-template-columns: 1fr;
+        }
+        .class__image {
+          min-height: 500px;
+        }
+        .footer__container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .section__container {
+          padding: 4.2rem 1.15rem;
+        }
+        .team__hierarchy {
+          gap: 3rem;
+        }
+        .team__card {
+          max-width: 100%;
+        }
+        .organizer__container {
+          flex-direction: column;
+        }
+        .organizer__image {
+          flex: 0 0 auto;
+          max-width: 400px;
+          margin: 0 auto;
+        }
+        .registration-form {
+          grid-template-columns: 1fr;
+        }
+        .form-group.full-width {
+          grid-column: span 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding-top: 88px;
+        }
+        nav {
+          top: 12px;
+          padding: 0.8rem 1rem;
+          border-radius: 12px;
+        }
+        .nav__logo {
+          max-width: 132px;
+        }
+        .desktop-register {
+          display: none !important;
+        }
+        .mobile-register {
+          display: block !important;
+        }
+        .nav__links {
+          display: none;
+        }
+        .hamburger {
+          display: block;
+        }
+        .nav__links.active {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: radial-gradient(circle at top, rgba(120, 0, 0, 0.2), #0c0c0d 45%);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 999;
+        }
+        .header__content h1 {
+          font-size: 3rem;
+          line-height: 3.5rem;
+        }
+        .join__grid {
+          position: static;
+          width: 100%;
+          margin: 2rem 0 0;
+          padding: 1.4rem;
+        }
+        .join__container {
+          padding-bottom: 4rem;
+        }
+        .team__hierarchy {
+          gap: 2rem;
+        }
+        .vice__presidents {
+          flex-direction: column;
+          gap: 2rem;
+        }
+        .vice__presidents::before {
+          display: none;
+        }
+        .president__level::after {
+          height: 30px;
+          bottom: -30px;
+        }
+        .domain__tabs {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+        }
+        .domain__tab {
+          width: 100%;
+          max-width: 250px;
+          text-align: center;
+        }
+        .team__card {
+          flex: 0 0 100%;
+          max-width: 300px;
+          margin: 0 auto;
+        }
+        .organizer__title {
+          font-size: 2rem;
+        }
+        .organizer__quote {
+          font-size: 1rem;
+        }
+        .registration-header {
+          height: 150px;
+        }
+        .registration-header h2 {
+          font-size: 1.8rem;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .mobile-register {
+          display: none !important;
+        }
+        .desktop-register {
+          display: block !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header__content h1 {
+          font-size: 2.5rem;
+          line-height: 3rem;
+        }
+        .footer__container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .section__container {
+          padding: 2.8rem 1rem;
+        }
+        .section__header {
+          font-size: 1.8rem;
+        }
+        .domain__title {
+          font-size: 1.5rem;
+        }
+        .organizer__quote {
+          font-size: 1rem;
+          line-height: 1.6;
+          padding-left: 1rem;
+        }
+        .organizer__title {
+          font-size: 1.8rem;
+        }
+        .registration-container {
+          margin: 0 1rem;
+        }
+        .registration-content {
+          padding: 1.5rem;
+        }
+        .mobile-verification {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .mobile-verification .verify-btn {
+          width: 100%;
+        }
+        .organizer__image {
+          max-width: 300px;
+        }
+        .timer-card {
+          width: 82px;
+        }
+        .timer-value {
+          font-size: 1.4rem;
+        }
+      }
+      
+      /* Success Message Banner */
+      .success-message-banner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #0c0c0d 0%, #1a0101 100%);
+        border: 2px solid var(--secondary-color);
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-align: center;
+        z-index: 3000;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        display: none;
+      }
+      
+      .success-message-banner.show {
+        display: block;
+        animation: fadeInBanner 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      
+      @keyframes fadeInBanner {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -40%);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+      
+      .success-message-banner .icon {
+        font-size: 3rem;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+      
+      .success-message-banner h3 {
+        color: var(--white);
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .success-message-banner p {
+        color: var(--text_light);
+        margin-bottom: 1rem;
+      }
+      
+      .success-message-banner .close-banner {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      /* Pause Section (Desktop) */
+      .pause-section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        position: relative;
+        overflow: hidden;
+        }
+
+      .pause-text {
+        color: var(--white);
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        max-width: 800px;
+        padding: 0 1rem;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeUpPause 1.2s ease forwards;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Glow effect */
+      .pause-text::after {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(255,0,0,0.25), transparent);
+        filter: blur(80px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+      }
+
+      /* Animation */
+      @keyframes fadeUpPause {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Tablet Responsive */
+      @media (max-width: 768px) {
+        .pause-text {
+          font-size: 1.8rem;
+          line-height: 1.4;
+        }
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 480px) {
+        .pause-text {
+          font-size: 1.5rem;
+        }
+      }
+
+      /* Scroll Reveal Base */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+        will-change: opacity, transform;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-left {
+        transform: translateX(-60px);
+      }
+
+      .reveal-right {
+        transform: translateX(60px);
+      }
+
+      .reveal-left.active,
+      .reveal-right.active {
+        transform: translateX(0);
+      }
+
+
+      /* Page Fade */
+      .fade-section {
+      opacity: 0;
+      transform: translateY(80px) scale(0.97);
+      filter: blur(4px);
+      transition: 
+        opacity 1s ease,
+        transform 1s ease,
+        filter 1s ease;
+    }
+
+    .fade-section.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .mosaic-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.8s ease;
+    }
+
+    .mosaic-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mosaic-text {
+      color: white;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .mosaic-overlay.show .mosaic-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Active state */
+    .mosaic-message.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .speaker-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+    }
+
+    .speaker-tab {
+      padding: 0.65rem 1.2rem;
+      border: 1px solid rgba(255, 0, 0, 0.5);
+      border-radius: 999px;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      min-width: 100px;
+    }
+
+    .speaker-tab.active {
+      background: linear-gradient(145deg, #9a0000, #690000);
+      color: white;
+      box-shadow: 0 8px 20px rgba(255, 0, 0, 0.28);
+    }
+
+    .speaker-content {
+      display: none;
+    }
+
+    .speaker-content.active {
+      display: block;
+    }
+
+    .nav__links a.active {
+      color: #ff4e4e;
+      font-weight: 600;
+    }
+
+    .nav__links a.active::after {
+      width: 50%;
+    }
+
+    #home, #mosaic, #speakers, #about , #team {
+      scroll-margin-top: 120px;
+    }
+
+    .idea-field {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .idea-field span {
+      position: absolute;
+      color: #ffffff; 
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      white-space: nowrap;
+
+      animation: floatIdea linear infinite;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.4),
+                  0 0 16px rgba(255, 0, 0, 0.3);
+    }
+
+    .idea-field span:nth-child(even) {
+      color: #ff1a1a;
+
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.7),
+                  0 0 25px rgba(255, 0, 0, 0.5);
+    }
+
+    @keyframes floatIdea {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) translateX(80px);
+        opacity: 0;
+      }
+    }
+
+    * {
+      cursor: none !important;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div class="particles"></div>
+    <div class="cursor-glow"></div>
+    <nav>
+      <div class="nav__logo">
+        <a href="#home"><img src="logo.jpeg" alt="logo" /></a>
+      </div>
+      <ul class="nav__links">
+        <li class="link"><a href="#home">Home</a></li>
+        <li class="link"><a href="#mosaic">Mosaic</a></li>
+        <li class="link"><a href="#speakers">Speakers</a></li>
+        <li class="link"><a href="#about">About</a></li>
+        <li class="link"><a href="#team">Our Team</a></li>
+        <li class="link mobile-register">
+          <button class="btn" onclick="showRegistrationModal()">Buy Ticket</button>
+        </li>
+      </ul>
+      <button class="btn desktop-register" onclick="showRegistrationModal()">Buy Ticket</button>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <header id="home" class="section__container container-wide header__container" data-aos="fade-up">
+      <div class="header__content reveal">
+        <span class="bg__blur"></span>
+        <span class="bg__blur header__blur"></span>
+        <h1><span>TEDx</span>SRMIST</h1>
+        <p>
+          TEDxSRMIST is a grassroot-level, independent TED event. Born from the belief that ideas worth spreading exist right here, within our own community. We provide a space where students, thinkers, and innovators come together and celebrate the full spectrum of human curiosity and potential. Expect a day of powerful talks, bold ideas, and conversations that linger long after the lights go down. Because the next big idea? It might just come from somewhere within you.
+        </p>
+        <button class="btn" onclick="window.location.href='https://www.ted.com/tedx/events/59816'">
+          Know More
+        </button>
+      </div>
+      <div class="header__image">
+        <img src="header.png" alt="header" />
+      </div>
+    </header>
+
+    <!--Pause Section -->
+    <section class="pause-section">
+
+      <div class="idea-field">
+        <span>Innovate</span>
+        <span>Disrupt</span>
+        <span>Create</span>
+        <span>Think</span>
+        <span>Build</span>
+        <span>Imagine</span>
+        <span>Inspire</span>
+        <span>Evolve</span>
+      </div>
+
+      <div class="pause-text">
+        "Ideas Worth Sharing."
+      </div>
+    </section>
+
+    <section id="mosaic" class="section__container container-wide class__container fade-section">
+      <div class="class__image reveal-left">
+        <span class="bg__blur"></span>
+        <img src="Big One .png" alt="class" class="class__img-1" />
+        <img src="small one.png" alt="class" class="class__img-2" />
+      </div>
+      <div class="class__content reveal">
+        <h2 class="section__header"><span style="color: red;">MOSAIC </span>: FRAGMENTS OF BECOMING</h2>
+        <p>
+          Mosaic, the flagship theme of TEDxSRMIST, celebrates the idea that we are shaped not by a single moment, but by countless fragments—experiences, choices, failures, and growth. Join us on <span style="color: red;">April 10, 2026</span> at 9 am IST, as we explore the pieces that define us—where every story, encounter, and turning point comes together to form a mosaic that is imperfect, evolving, and uniquely ours. <span style="color: red;">Phase 1 tickets</span> are available at <span style="color: red;">₹199</span> only. 
+        </p>
+        <!-- Modern Timer Section -->
+        <div class="timer-container">
+          <div class="timer-card">
+            <div class="timer-value" id="days">00</div>
+            <div class="timer-label">Days</div>
+          </div>
+          <div class="timer-card">
+            <div class="timer-value" id="hours">00</div>
+            <div class="timer-label">Hours</div>
+          </div>
+          <div class="timer-card">
+            <div class="timer-value" id="minutes">00</div>
+            <div class="timer-label">Minutes</div>
+          </div>
+          <div class="timer-card">
+            <div class="timer-value" id="seconds">00</div>
+            <div class="timer-label">Seconds</div>
+          </div>
+        </div>
+        <!-- Centered Buy Ticket button -->
+        <button class="btn" onclick="showRegistrationModal()">Buy Ticket</button>
+      </div>
+    </section>
+
+    <section id="speakers" class="section__container container-wide explore__container fade-section">
+      <div class="explore__header">
+        <h2 class="section__header">OUR PREVIOUS SPEAKERS</h2>
+      </div>
+
+      <div class="speaker-tabs">
+        <button class="speaker-tab" data-year="2024">2024</button>
+        <button class="speaker-tab active" data-year="2025">2025</button>
+      </div>
+
+      <!--2025 -->
+      <div class="speaker-content active" id="year-2025">
+        <div class="explore__grid">
+        <!-- Updated speaker cards with flip effect -->
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Malavika.png" alt="Speaker 1" />
+                <h4>Malavika Muthukumar</h4>
+              </div>
+              <div class="card-back">
+                <p>Malavika Muthukumar, Founder of Speech Avenue MDC, is a speech-language pathologist dedicated to restoring voices and advancing inclusive communication through a blend of science, technology, and empathy.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Subhashini.png" alt="Speaker 2" />
+                <h4>Subhashini</h4>
+              </div>
+              <div class="card-back">
+                <p>Subhashini, Co-founder of Karpom Karpipom NGO, empowers women and children through education and advocacy, bridging grassroots impact with meaningful change.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Santosh.png" alt="Speaker 3" />
+                <h4>Dr. Santosh Karthikeyan Viswanathan</h4>
+              </div>
+              <div class="card-back">
+                <p>At the forefront of Data & AI, Dr. Santosh Karthikeyan Viswanathan is redefining healthcare innovation. As Technical Director at AstraZeneca, his work in analytics and AI is advancing drug discovery, improving patient outcomes, and shaping the future of medicine.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Vidya.png" alt="Speaker 4" />
+                <h4>Vidya Prabhu</h4>
+              </div>
+              <div class="card-back">
+                <p>Driving transformation at a global scale, Vidya Prabhu, Associate Director at Kyndryl Solutions, leads with innovation and purpose. Passionate about mentoring future leaders and championing diversity, she turns vision into meaningful and lasting impact.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Vedant.png" alt="Speaker 5" />
+                <h4>Vedant Anand</h4>
+              </div>
+              <div class="card-back">
+                <p>From curiosity to cutting-edge innovation, Vedant Anand’s journey reflects a passion for robotics and automation. Now an engineer at Yamaha Motor Research, he inspires young minds to think boldly and build fearlessly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Shreyansh.png" alt="Speaker 6" />
+                <h4>Shreyansh Goyal</h4>
+              </div>
+              <div class="card-back">
+                <p>Shreyansh Goyal, a software engineer and digital creator, bridges the worlds of technology and content. With experience at leading tech firms, he empowers aspiring professionals by simplifying career paths and redefining learning in the digital age.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Arthi.png" alt="Speaker 7" />
+                <h4>Arthi Raghuram</h4>
+              </div>
+              <div class="card-back">
+                <p>Arthi Raghuram, Founder of Deyga Organics, transformed personal challenges into a thriving natural skincare movement. Her journey reflects resilience, purpose, and the power of nature, inspiring others to turn struggles into meaningful impact.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Rajesh.png" alt="Speaker 8" />
+                <h4>Rajesh Panda</h4>
+              </div>
+              <div class="card-back">
+                <p>Reimagining the future of learning, Rajesh Panda, Founder & MD of Corporate Gurukul, champions experiential education. His work bridges the gap between knowledge and real-world skills, shaping future-ready individuals and innovative thinkers.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Asmit.png" alt="Speaker 9" />
+                <h4>Asmit Walia</h4>
+              </div>
+              <div class="card-back">
+                <p>Asmit Walia translates military strategy into everyday problem-solving and innovation. His insights into adaptability, precision, and decision-making empower individuals to approach challenges with clarity and strategic thinking.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Sudarshan.png" alt="Speaker 10" />
+                <h4>R. Sudarshan</h4>
+              </div>
+              <div class="card-back">
+                <p>Turning insights into impact, R. Sudarshan, a Business Analytics student and President of Wizoona, is a strategic thinker driven by data. He leverages analytics and leadership to transform ideas into meaningful action across education and business.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- DUPLICATES -->
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Malavika.png" alt="Speaker 1" />
+                <h4>Malavika Muthukumar</h4>
+              </div>
+              <div class="card-back">
+                <p>Malavika Muthukumar, Founder of Speech Avenue MDC, is a speech-language pathologist dedicated to restoring voices and advancing inclusive communication through a blend of science, technology, and empathy.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Subhashini.png" alt="Speaker 2" />
+                <h4>Subhashini</h4>
+              </div>
+              <div class="card-back">
+                <p>Subhashini, Co-founder of Karpom Karpipom NGO, empowers women and children through education and advocacy, bridging grassroots impact with meaningful change.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Santosh.png" alt="Speaker 3" />
+                <h4>Dr. Santosh Karthikeyan Viswanathan</h4>
+              </div>
+              <div class="card-back">
+                <p>At the forefront of Data & AI, Dr. Santosh Karthikeyan Viswanathan is redefining healthcare innovation. As Technical Director at AstraZeneca, his work in analytics and AI is advancing drug discovery, improving patient outcomes, and shaping the future of medicine.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Vidya.png" alt="Speaker 4" />
+                <h4>Vidya Prabhu</h4>
+              </div>
+              <div class="card-back">
+                <p>Driving transformation at a global scale, Vidya Prabhu, Associate Director at Kyndryl Solutions, leads with innovation and purpose. Passionate about mentoring future leaders and championing diversity, she turns vision into meaningful and lasting impact.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Vedant.png" alt="Speaker 5" />
+                <h4>Vedant Anand</h4>
+              </div>
+              <div class="card-back">
+                <p>From curiosity to cutting-edge innovation, Vedant Anand’s journey reflects a passion for robotics and automation. Now an engineer at Yamaha Motor Research, he inspires young minds to think boldly and build fearlessly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Shreyansh.png" alt="Speaker 6" />
+                <h4>Shreyansh Goyal</h4>
+              </div>
+              <div class="card-back">
+                <p>Shreyansh Goyal, a software engineer and digital creator, bridges the worlds of technology and content. With experience at leading tech firms, he empowers aspiring professionals by simplifying career paths and redefining learning in the digital age.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Arthi.png" alt="Speaker 7" />
+                <h4>Arthi Raghuram</h4>
+              </div>
+              <div class="card-back">
+                <p>Arthi Raghuram, Founder of Deyga Organics, transformed personal challenges into a thriving natural skincare movement. Her journey reflects resilience, purpose, and the power of nature, inspiring others to turn struggles into meaningful impact.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Rajesh.png" alt="Speaker 8" />
+                <h4>Rajesh Panda</h4>
+              </div>
+              <div class="card-back">
+                <p>Reimagining the future of learning, Rajesh Panda, Founder & MD of Corporate Gurukul, champions experiential education. His work bridges the gap between knowledge and real-world skills, shaping future-ready individuals and innovative thinkers.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Asmit.png" alt="Speaker 9" />
+                <h4>Asmit Walia</h4>
+              </div>
+              <div class="card-back">
+                <p>Asmit Walia translates military strategy into everyday problem-solving and innovation. His insights into adaptability, precision, and decision-making empower individuals to approach challenges with clarity and strategic thinking.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="explore__card reveal">
+            <div class="explore__card-inner">
+              <div class="card-front">
+                <img src="Sudarshan.png" alt="Speaker 10" />
+                <h4>R. Sudarshan</h4>
+              </div>
+              <div class="card-back">
+                <p>Turning insights into impact, R. Sudarshan, a Business Analytics student and President of Wizoona, is a strategic thinker driven by data. He leverages analytics and leadership to transform ideas into meaningful action across education and business.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2024 -->
+      <div class="speaker-content" id="year-2024">
+        <div class="explore__grid">
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="sudheer.jpg" alt="Speaker 1" />
+              <h4>Dr. Sudheer Kumar N</h4>
+            </div>
+            <div class="card-back">
+              <p>Sudheer Kumar N, CBPO at ISRO—India's premier space research organization. With a wealth of experience in the aerospace industry, he takes us on a journey through the stars, sharing insights into the future of space exploration and the transformative role of innovation in shaping our cosmic aspirations.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="sagar.jpg" alt="Speaker 2" />
+              <h4>Sagar Makwana</h4>
+            </div>
+            <div class="card-back">
+              <p>A man of several passions, Sagar Makwana has ample experience in entrepreneurship, management and mentorship. His unique perspective on life and commitment serves as a game changer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="shazib.jpg" alt="Speaker 3" />
+              <h4>Shazibsha Younes</h4>
+            </div>
+            <div class="card-back">
+              <p>Shazibsha Younes, a visionary in aerospace engineering with a passion for exploring spirituality, philosophy, and community unity.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="disha.jpg" alt="Speaker 4" />
+              <h4>Disha Kasat</h4>
+            </div>
+            <div class="card-back">
+              <p>Disha Kasat, a cricketer and WPL champion with RCB, brings her experience in women's cricket and an impressive track record to the stage. She shares insights into the future of women's sports and the role of innovation in shaping society.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="vishal.jpg" alt="Speaker 5" />
+              <h4>Vishal Yadav</h4>
+            </div>
+            <div class="card-back">
+              <p>Vishal Yadav, Founder and CEO at Female Cricket. His platform inspires and empowers female cricketers worldwide with innovative training techniques and a global vision.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="prachi.jpg" alt="Speaker 6" />
+              <h4>Prachi Goswami</h4>
+            </div>
+            <div class="card-back">
+              <p>Prachi Goswami, a pilot and aviation instructor, has journeyed from being a national-level swimmer to soaring in the aviation industry, inspiring transformation and enlightenment along the way.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="prakruti.jpg" alt="Speaker 6" />
+              <h4>Prakruti Mishra</h4>
+            </div>
+            <div class="card-back">
+              <p>Prakruti Mishra—a beacon of stardom, whose captivating performances and unwavering dedication embody the transformative power of storytelling.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="ankush.jpg" alt="Speaker 7" />
+              <h4>Ankush Barjata</h4>
+            </div>
+            <div class="card-back">
+              <p>Ankush R Barjata, CEO of Deeva and a Shark Tank finalist, revolutionizes the saree shopping experience with his visionary approach.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Duplicate cards for seamless loop -->
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="sudheer.jpg" alt="Speaker 1" />
+              <h4>Dr. Sudheer Kumar N</h4>
+            </div>
+            <div class="card-back">
+              <p>Sudheer Kumar N, CBPO at ISRO—India's premier space research organization. With a wealth of experience in the aerospace industry, he takes us on a journey through the stars, sharing insights into the future of space exploration and the transformative role of innovation in shaping our cosmic aspirations.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="sagar.jpg" alt="Speaker 2" />
+              <h4>Sagar Makwana</h4>
+            </div>
+            <div class="card-back">
+              <p>A man of several passions, Sagar Makwana has ample experience in entrepreneurship, management and mentorship. His unique perspective on life and commitment serves as a game changer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="shazib.jpg" alt="Speaker 3" />
+              <h4>Shazibsha Younes</h4>
+            </div>
+            <div class="card-back">
+              <p>Shazibsha Younes, a visionary in aerospace engineering with a passion for exploring spirituality, philosophy, and community unity.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="disha.jpg" alt="Speaker 4" />
+              <h4>Disha Kasat</h4>
+            </div>
+            <div class="card-back">
+              <p>Disha Kasat, a cricketer and WPL champion with RCB, brings her experience in women's cricket and an impressive track record to the stage. She shares insights into the future of women's sports and the role of innovation in shaping society.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="vishal.jpg" alt="Speaker 5" />
+              <h4>Vishal Yadav</h4>
+            </div>
+            <div class="card-back">
+              <p>Vishal Yadav, Founder and CEO at Female Cricket. His platform inspires and empowers female cricketers worldwide with innovative training techniques and a global vision.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="prachi.jpg" alt="Speaker 6" />
+              <h4>Prachi Goswami</h4>
+            </div>
+            <div class="card-back">
+              <p>Prachi Goswami, a pilot and aviation instructor, has journeyed from being a national-level swimmer to soaring in the aviation industry, inspiring transformation and enlightenment along the way.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="prakruti.jpg" alt="Speaker 6" />
+              <h4>Prakruti Mishra</h4>
+            </div>
+            <div class="card-back">
+              <p>Prakruti Mishra—a beacon of stardom, whose captivating performances and unwavering dedication embody the transformative power of storytelling.</p>
+            </div>
+          </div>
+        </div>
+        <div class="explore__card reveal">
+          <div class="explore__card-inner">
+            <div class="card-front">
+              <img src="ankush.jpg" alt="Speaker 7" />
+              <h4>Ankush Barjata</h4>
+            </div>
+            <div class="card-back">
+              <p>Ankush R Barjata, CEO of Deeva and a Shark Tank finalist, revolutionizes the saree shopping experience with his visionary approach.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div> 
+  </div> 
+    </section>
+
+    <section id="about" class="section__container container-wide join__container fade-section">
+      <h2 class="section__header">WHY ATTEND <span style="color: red;">TEDx</span>SRMIST?</h2>
+      <p class="section__subheader reveal">
+        It takes one match to light up a fire. It takes one idea to change everything. And it can stay with you longer than you expect. It makes you pause, rethink, and see things in a way that you never thought you would. TEDxSRMIST is a safe space for these ideas, thoughts and experiences. It is a place where perspectives can shift to something much more meaningful. Growing with such a platform means allowing yourself to listen, reflect, and evolve. And ultimately realizing that sometimes, the smallest idea can leave the biggest impact.
+      </p>
+      <div class="join__image">
+        <img src="Speakers.png" alt="Join" />
+        <div class="join__grid">
+          <div class="join__card reveal">
+            <span><i class="ri-lightbulb-line"></i></span>
+            <div class="join__card__content">
+              <h4>Unlearn. Relearn.</h4>
+              <p>Ideas that challenge what you thought you knew.</p>
+            </div>
+          </div>
+          <div class="join__card reveal">
+            <span><i class="ri-group-line"></i></span>
+            <div class="join__card__content">
+              <h4>Connect</h4>
+              <p>Where conversations spark something bigger.</p>
+            </div>
+          </div>
+          <div class="join__card reveal">
+            <span><i class="ri-rocket-line"></i></span>
+            <div class="join__card__content">
+              <h4>Beyond Tomorrow</h4>
+              <p>A glimpse into what’s emerging next.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" class="section__container container-wide team__container fade-section">
+      <div class="team__header">
+        <h2>OUR TEAM</h2>
+      </div>
+
+      <div class="team__hierarchy">
+        <div class="president__level">
+          <div class="team__card reveal">
+            <img src="Jevil.jpeg" alt="President">
+            <div class="team__info">
+              <h4>Jevil Mansata</h4>
+              <p>President</p>
+            </div>
+            <div class="team__social">
+              <a href="https://www.linkedin.com/in/jevil-mansata-74b534343/"><i class="ri-linkedin-fill"></i></a>
+              <a href="https://www.instagram.com/jevil_.man/"><i class="ri-instagram-line"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="vice__presidents">
+          <div class="team__card reveal">
+            <img src="vishwanath.png" alt="Vice President">
+            <div class="team__info">
+              <h4>Vishwanath Peri</h4>
+              <p>Vice President</p>
+            </div>
+            <div class="team__social">
+              <a href="https://www.linkedin.com/in/viswanath-peri/"><i class="ri-linkedin-fill"></i></a>
+              <a href="https://www.instagram.com/viswanath_peri/"><i class="ri-instagram-line"></i></a>
+            </div>
+          </div>
+          <div class="team__card reveal">
+            <img src="Jayashree.jpeg" alt="Vice President">
+            <div class="team__info">
+              <h4>Jayashree M</h4>
+              <p>Vice President</p>
+            </div>
+            <div class="team__social">
+              <a href="https://www.linkedin.com/in/jayashree-manigandan"><i class="ri-linkedin-fill"></i></a>
+              <a href="https://www.instagram.com/00_j_m_00/"><i class="ri-instagram-line"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="domain__tabs">
+        <button class="domain__tab active" data-domain="curations">Curations</button>
+        <button class="domain__tab" data-domain="operations">Operations</button>
+        <button class="domain__tab" data-domain="creatives">Creatives</button>
+        <button class="domain__tab" data-domain="sponsorships">Sponsorships</button>
+      </div>
+
+      <div class="domain__content">
+        <div class="domain__section active" id="curations">
+          <h3 class="domain__title">CURATIONS</h3>
+          <div class="domain__team">
+            <div class="team__card reveal">
+              <img src="Neha.jpeg" alt="Lead">
+              <div class="team__info">
+                <h4>Neha Kadiyala</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="http://www.linkedin.com/in/neha-kadiyala-9430912b7"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/nehakadiyala/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="nabeel.jpg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Nabeel Ahmad</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/nabeelahmad10/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/thenabeeeeel/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Madhur.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Madhur Kalra</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/madhur-k-71b362280/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/madhur.xx/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Nakshatra.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Nakshatra K</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/nakshatra-r-08a01423b/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/nakshatraramakrishnan/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Praneetha.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Gunda Rama Praneetha</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/rama-praneetha-gunda-7a0691288/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/gunda_rama_praneetha/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Heramb.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Heramb Acharya</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/heramb-acharya/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/to_be_heramb/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="sugan.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Sugandhan MSA</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/sugandhan-m-s-a-2b1a18243/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/the5ugan/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="domain__section" id="operations">
+          <h3 class="domain__title">OPERATIONS</h3>
+          <div class="domain__team">
+            <div class="team__card reveal">
+              <img src="Daksh.jpeg" alt="Lead">
+              <div class="team__info">
+                <h4>Daksh Namdev</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/daksh-namdev-40a7611b7/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/daksh.0511/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Bharath.jpeg" alt="Lead">
+              <div class="team__info">
+                <h4>Bharath</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/bharath-priyan-56a3b7246/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/bharathpriyan1/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Nashita.jpeg" alt="Lead">
+              <div class="team__info">
+                <h4>Nashita Ahamad</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/shaik-nashita-ahamad/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/nashita.ahamad/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>  
+            <div class="team__card reveal">
+              <img src="Anushka2.JPG" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Anushka Rakesh</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/anushka-rakesh-605466324/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/anushkaaaaa.r/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div> 
+            <div class="team__card">
+              <img src="Tanya.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Tanya Isaac</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/tanya-sarah-isaac-0372a0387/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/_.tanya_isaac"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card">
+              <img src="Harshad.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Harshad Kumar</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/harshad-kumar-s-6b6038304/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/harshadkumarrr/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card">
+              <img src="Sanskriti.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Sanskriti Singh</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/sanskriteasingh/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/sanskri.tea/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card">
+              <img src="Chetan.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Chetan</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/daschetanbajaj/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/d.chetan_08/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div> 
+          </div>
+        </div>
+
+        <div class="domain__section" id="creatives">
+          <h3 class="domain__title">CREATIVES</h3>
+          <div class="domain__team">
+            <div class="team__card reveal">
+              <img src="Varsha.jpeg" alt="Lead">
+              <div class="team__info">
+                <h4>Varsha Srinivasan</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/varsha-srinivasan-372761283/"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Raj.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Raj Sikila</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/raj-sikila-a5799528b/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/raj_sikila/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Aqeel.jpg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Aqeel Umar</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="RyanB.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Ryan Biswas</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/ryanbiswas05/"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Mathangi2.JPG" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Mathangi Diwakar</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/mathangi-diwakar-9a488928a/"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Ryan.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Ryan Bobby</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/ryan-bobby-09a61827a/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/_ryan.bobby_/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Swastika.webp" alt="Lead">
+              <div class="team__info">
+                <h4>Swastika Bhattacharya</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="https://www.linkedin.com/in/swastika-bhattacharyya-9538b3243/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/_swastikapoetry_/"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="domain__section" id="sponsorships">
+          <h3 class="domain__title">SPONSORSHIPS</h3>
+          <div class="domain__team">
+            <div class="team__card reveal">
+              <img src="Shristi.jpeg" alt="Lead">
+              <div class="team__info">
+                <h4>Shristi Sinha</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div> 
+            <div class="team__card reveal">
+              <img src="Kartikay.jpeg" alt="Lead">
+              <div class="team__info">
+                <h4>Kartikay Pandey</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Soumasree.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Soumasree Mukherjee</h4>
+                <p>Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div>
+            </div>
+            <div class="team__card reveal">
+              <img src="Jahanvi.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Jahanvi Singh</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div> 
+            </div> 
+          <div class="team__card reveal">
+              <img src="Sachin.jpeg" alt="Associate Lead">
+              <div class="team__info">
+                <h4>Sachin Kalyan Kumar</h4>
+                <p>Associate Lead</p>
+              </div>
+              <div class="team__social">
+                <a href="#"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Redesigned Organizer Section -->
+    <section class="organizer fade-section">
+      <div class="organizer__container">
+        <div class="organizer__image">
+          <img src="Hariharan Sir.png" alt="Hariharan B">
+        </div>
+        <div class="organizer__content reveal">
+          <h2 class="organizer__title">Meet Our Organizer</h2>
+          <div class="organizer__quote">
+            At TEDxSRMIST, we believe in the power of ideas to change attitudes, lives, and ultimately, the world. Our mission is to create a platform where innovative thoughts meet passionate minds, fostering discussions that transcend boundaries and inspire action.
+          </div>
+          <div class="organizer__name">Hariharan B</div>
+          <div class="organizer__position">Organizer, TEDxSRMIST</div>
+          <div class="organizer__social">
+            <a href="https://www.linkedin.com/in/dr-hariharan-b-05816228/"><i class="ri-linkedin-fill"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="section__container footer__container fade-section">
+      <span class="bg__blur"></span>
+      <span class="bg__blur footer__blur"></span>
+      <div class="footer__col">
+        <div class="footer__logo"><img src="logo.jpeg" alt="logo" /></div>
+        <p>
+          Join us at TEDxSRMIST for a day of inspiration, innovation, and ideas worth spreading. Let's explore the frontiers of human knowledge together!
+        </p>
+        <div class="footer__socials">
+          <a href="https://www.instagram.com/tedxsrmist/"><i class="ri-instagram-line"></i></a>
+          <a href="https://www.linkedin.com/company/tedxsrmist/posts/?feedView=all"><i class="ri-linkedin-fill"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Quick Links</h4>
+        <a href="#home">Home</a>
+        <a href="#mosaic">Mosaic</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#about">About</a>
+        <a href="#team">Our Team</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contact Us</h4>
+        <a href="/cdn-cgi/l/email-protection#225647465a51504f4b51561012101062454f434b4e0c414d4f">Email</a>
+        <a href="https://www.google.com/maps/dir//R2FW%2BWM3,+Intra+College+Rd,+Potheri,+SRM+Nagar,+Kattankulathur,+Tamil+Nadu+603203/@12.8346269,79.9014502,11z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3a52f70c95688435:0xfb2355e047e8b473!2m2!1d80.0466801!2d12.8247646?entry=ttu&g_ep=EgoyMDI1MDIxOS4xIKXMDSoASAFQAw%3D%3D">Address</a>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <a href="https://www.ted.com/about/our-organization/our-policies-terms/privacy-policy#:~:text=TED%20collects%20and%20processes%20personal,other%20relevant%20TEDx%20license%20information">Privacy Policy</a>
+        <a href="https://www.ted.com/about/our-organization/our-policies-terms">Terms & Conditions</a>
+      </div>
+    </footer>
+    <div class="footer__bar">
+      Created with ❤️ by Team TEDxSRMIST. All rights reserved.
+    </div>
+
+<!-- Improved Registration Form Modal -->
+<!-- Registration Modal -->
+<div id="registrationModal" class="registration-modal">
+  <div class="registration-container">
+    <button class="close-registration" onclick="closeRegistrationModal()">✖</button>
+    <div class="registration-header">
+      <img src="cosmos.webp" alt="TEDxSRMIST Event Banner">
+      <h2>Common Registrations</h2>
+    </div>
+    <div class="registration-content">
+      <div class="registration-description">
+        <h3>
+          "
+          <span style="color: red;">MOSAIC</span> - FRAGMENTS OF BECOMING"
+      </h3>      
+      Join us for an extraordinary day of inspiration and innovation at TEDxSRMIST. Our theme, Mosaic: Fragments of Becoming, invites you to explore groundbreaking ideas that redefine the limits of possibility. Secure your spot today at just <span style="color: red;">₹199</span> for this transformative experience!
+      </div>
+      <section id="register">
+        <div>
+          <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbzoNbLZfpZXTt5hAWOibOLEKfO6XjnHUoYZfFcuCoWTuUm8Ls4IMF23jdNbPn8oyOAl/exec" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="text" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="profession">Profession</label>
+              <input type="text" id="profession" name="profession" required>
+            </div>
+            <div class="form-group">
+              <label for="organisation-name">Organisation Name</label>
+              <input type="text" id="organisation-name" name="organisation name" required>
+            </div>
+            <div class="form-group">
+              <label for="ticket-quantity">Number of Tickets</label>
+              <input type="number" id="ticket-quantity" name="ticket-quantity" required min="1" max="5" step="1">
+            </div>
+            <!-- Button for submitting details -->
+            <button type="submit" id="submit-details" class="payment-btn">
+              Submit Details
+            </button>
+          </form>
+          <!-- Message placeholder -->
+          <div id="message" style="display: none; margin-top: 1rem; color: var(--text_light); text-align: center;"></div>
+          <!-- Pay Now button (initially hidden) -->
+          <button type="button" id="pay-now" class="payment-btn" style="display: none; margin-top: 1rem;">
+            Pay Now
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Success Message Banner -->
+<div id="successMsg" class="success-message-banner">
+  <button class="close-banner" onclick="closeSuccessMessage()">&times;</button>
+  <div class="icon">&#10004;</div>
+  <h3>Thank You for Purchasing!</h3>
+  <p>We will send you the tickets on your mail very soon. Please be sure to check your SPAM folder as well!</p>
+</div>
+
+<!-- 🌌 Mosaic Message -->
+<div id="mosaicOverlay" class="mosaic-overlay">
+  <div class="mosaic-text">See you at Mosaic.</div>
+</div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    // ------------------------
+    // 1. AOS Initialization
+    // ------------------------
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false,
+    });
+
+    // ------------------------
+    // 2. Registration Form Handling
+    // ------------------------
+    var registrationForm = document.getElementById("registrationForm");
+    var messageEl = document.getElementById("message");
+    var submitDetailsButton = document.getElementById("submit-details");
+    var payNowButton = document.getElementById("pay-now");
+
+    if (payNowButton) payNowButton.style.display = "none";
+
+    if (registrationForm) {
+      registrationForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        messageEl.textContent = "Submitting..";
+        messageEl.style.display = "block";
+        submitDetailsButton.disabled = true;
+
+        var formData = new FormData(registrationForm);
+        var keyValuePairs = [];
+
+        for (var pair of formData.entries()) {
+          keyValuePairs.push(pair[0] + "=" + pair[1]);
+        }
+
+        var formDataString = keyValuePairs.join("&");
+
+        fetch(registrationForm.action, {
+          method: "POST",
+          redirect: "follow",
+          body: formDataString,
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+        })
+          .then(function (response) {
+            if (response) return response;
+            else throw new Error("Failed to submit");
+          })
+          .then(function () {
+            messageEl.textContent = "Registration successful. Please click \"Pay Now\" to proceed.";
+            submitDetailsButton.style.display = "none";
+            payNowButton.style.display = "block";
+          })
+          .catch(function () {
+            messageEl.textContent = "Error occurred.";
+            submitDetailsButton.disabled = false;
+          });
+      });
+    }
+
+    if (payNowButton) {
+      payNowButton.addEventListener("click", function () {
+        window.location.href = "https://pages.razorpay.com/pl_Q4Io1aJSRIhLaR/view";
+      });
+    }
+
+    // ------------------------
+    // 3. Mobile Navigation
+    // ------------------------
+    var hamburger = document.querySelector(".hamburger");
+    var navLinks = document.querySelector(".nav__links");
+
+    if (hamburger) {
+      hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+      });
+    }
+
+    document.addEventListener("click", function (e) {
+      if (
+        navLinks.classList.contains("active") &&
+        !navLinks.contains(e.target) &&
+        !hamburger.contains(e.target)
+      ) {
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("active");
+      }
+    });
+
+    // ------------------------
+    // 4. Domain Tabs
+    // ------------------------
+    var domainTabs = document.querySelectorAll(".domain__tab");
+    var domainSections = document.querySelectorAll(".domain__section");
+
+    domainTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        domainTabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        domainSections.forEach(section => {
+          section.classList.remove("active");
+          if (section.id === tab.dataset.domain)
+            section.classList.add("active");
+        });
+      });
+    });
+
+    // Keep role order consistent: Leads first, then Associates on next row.
+    document.querySelectorAll(".domain__team").forEach(function (team) {
+      var cards = Array.from(team.querySelectorAll(":scope > .team__card"));
+      if (!cards.length) return;
+
+      var leads = [];
+      var associates = [];
+      var others = [];
+
+      cards.forEach(function (card) {
+        var roleText = (card.querySelector(".team__info p")?.textContent || "").toLowerCase().trim();
+
+        if (roleText.includes("associate")) {
+          associates.push(card);
+        } else if (roleText.includes("lead")) {
+          leads.push(card);
+        } else {
+          others.push(card);
+        }
+      });
+
+      team.innerHTML = "";
+      leads.forEach(function (card) { team.appendChild(card); });
+
+      if (leads.length > 0 && associates.length > 0) {
+        var breakEl = document.createElement("div");
+        breakEl.className = "role-break";
+        breakEl.setAttribute("aria-hidden", "true");
+        team.appendChild(breakEl);
+      }
+
+      associates.forEach(function (card) { team.appendChild(card); });
+      others.forEach(function (card) { team.appendChild(card); });
+    });
+
+    // ------------------------
+    // 5. Smooth Scroll
+    // ------------------------
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href"))?.scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+    });
+
+    // ------------------------
+    // 6. Countdown Timer
+    // ------------------------
+    function updateCountdown() {
+      var targetDate = new Date("April 10, 2026 09:00:00").getTime();
+      var now = new Date().getTime();
+      var diff = targetDate - now;
+
+      if (diff < 0) return;
+
+      var units = {
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
+      };
+
+      Object.entries(units).forEach(([k, v]) => {
+        var el = document.getElementById(k);
+        if (el) el.textContent = v.toString().padStart(2, "0");
+      });
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ------------------------
+    // 7. Razorpay
+    // ------------------------
+    (function () {
+      var d = document;
+      if (!d.getElementById("razorpay-embed-btn-js")) {
+        var s = d.createElement("script");
+        s.defer = true;
+        s.id = "razorpay-embed-btn-js";
+        s.src = "https://cdn.razorpay.com/static/embed_btn/bundle.js";
+        d.body.appendChild(s);
+      }
+    })();
+
+    // ------------------------
+    // 8. Modal Controls
+    // ------------------------
+    window.showRegistrationModal = function () {
+      var modal = document.getElementById("registrationModal");
+      if (modal) {
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+    };
+
+    window.closeRegistrationModal = function () {
+      var modal = document.getElementById("registrationModal");
+      if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    };
+
+    // ------------------------
+    // 9. Scroll Reveal 
+    // ------------------------
+    const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("active");
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ------------------------
+    // 10. Section Fade (FIXED PROPERLY)
+    // ------------------------
+    const sections = document.querySelectorAll(".fade-section");
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: "-50px 0px -50px 0px"
+    });
+
+    sections.forEach(sec => sectionObserver.observe(sec));
+
+  });
+
+
+  // ------------------------
+  // 11. Logo Click - MOSAIC
+  // ------------------------
+  const logo = document.querySelector('a[href="#home"]');
+  const overlay = document.getElementById("mosaicOverlay");
+
+  if (logo && overlay) {
+    logo.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      setTimeout(() => {
+        overlay.classList.add("show");
+      }, 400);
+
+      setTimeout(() => {
+        overlay.classList.remove("show");
+      }, 1500);
+    });
+  }
+
+  // ------------------------
+  // 11. Speaker Tabs
+  // ------------------------
+  const tabs = document.querySelectorAll(".speaker-tab");
+  const contents = document.querySelectorAll(".speaker-content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const year = tab.dataset.year;
+
+      contents.forEach(c => {
+        c.classList.remove("active");
+        if (c.id === "year-" + year) {
+          c.classList.add("active");
+        }
+      });
+    });
+  });
+
+  // ------------------------
+  // 12. Floating Particles 
+  // ------------------------
+  const particlesContainer = document.querySelector('.particles');
+
+  if (particlesContainer) {
+    for (let i = 0; i < 40; i++) {
+      let particle = document.createElement('span');
+
+      let size = Math.random() * 4 + 2;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+
+      particle.style.left = Math.random() * 120 + 'vw';
+      particle.style.animationDuration = (Math.random() * 6 + 3) + 's';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+
+      particlesContainer.appendChild(particle);
+    }
+  }
+
+  // ------------------------
+  // 13. Cursor Glow 
+  // ------------------------
+  const glow = document.querySelector(".cursor-glow");
+
+  if (glow) {
+    document.addEventListener("mousemove", (e) => {
+      glow.style.left = e.clientX + "px";
+      glow.style.top = e.clientY + "px";
+    });
+  }
+
+  // ------------------------
+  // 14. Cursor Color Change on Hover 
+  // ------------------------
+  const interactiveElements = document.querySelectorAll(
+    "button, .btn, .explore__nav span, .domain__tab, .verify-btn, .payment-btn, .close-banner, .hamburger, .close-menu, .close-registration, .speaker-tab"
+  );
+
+  interactiveElements.forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      glow.style.background = "#000"; // black
+    });
+
+    el.addEventListener("mouseleave", () => {
+      glow.style.background = "#8b0000"; // back to red
+    });
+  });
+
+  // ------------------------
+  // 15. Active Navbar Highlight on Scroll
+  // ------------------------
+  const sectionsAll = document.querySelectorAll("section[id]");
+  const navLinksAll = document.querySelectorAll(".nav__links a");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sectionsAll.forEach(section => {
+      const sectionTop = section.offsetTop - 150;
+      const sectionHeight = section.clientHeight;
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinksAll.forEach(link => {
+      link.classList.remove("active");
+
+      if (link.getAttribute("href") === "#" + current) {
+        link.classList.add("active");
+      }
+    });
+  });
+
+  // ------------------------
+  // 16. Floating Idea Field (PAUSE SECTION)
+  // ------------------------
+  const ideas = document.querySelectorAll(".idea-field span");
+
+  if (ideas.length > 0) {
+    ideas.forEach((el) => {
+      el.style.left = Math.random() * 100 + "%";
+      el.style.animationDuration = (6 + Math.random() * 10) + "s";
+      el.style.animationDelay = Math.random() * 5 + "s";
+      el.style.fontSize = (0.8 + Math.random() * 1.2) + "rem";
+      el.style.opacity = Math.random() * 0.5 + 0.2;
+    });
+  }
+
+  // ------------------------
+  // Success Message
+  // ------------------------
+  function showSuccessMessage() {
+    document.getElementById('successMsg').classList.add('show');
+  }
+
+  function closeSuccessMessage() {
+    document.getElementById('successMsg').classList.remove('show');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('payment') === 'success') {
+      showSuccessMessage();
+    }
+  });
+  </script>
+  </body>
+</html>
