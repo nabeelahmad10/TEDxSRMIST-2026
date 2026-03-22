@@ -1815,6 +1815,19 @@
       }
 
       @media (max-width: 768px) {
+        .team__card::before {
+          background: linear-gradient(to bottom, transparent 45%, rgba(0, 0, 0, 0.55) 100%);
+        }
+        .team__card img {
+          filter: grayscale(0%);
+        }
+        .team__info {
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.15));
+        }
+        .team__social {
+          opacity: 1;
+          transform: translateX(0);
+        }
         .fade-section {
           opacity: 1;
           transform: none;
