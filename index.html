@@ -2304,6 +2304,21 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .fade-section {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
     * {
       cursor: none !important;
     }
@@ -3188,7 +3203,7 @@
               </div>
               <div class="team__social">
                 <a href="https://www.linkedin.com/in/mathangi-diwakar-9a488928a/"><i class="ri-linkedin-fill"></i></a>
-                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="https://www.instagram.com/mathangi_diwakar/"><i class="ri-instagram-line"></i></a>
               </div>
             </div>
             <div class="team__card reveal">
@@ -3226,8 +3241,8 @@
                 <p>Lead</p>
               </div>
               <div class="team__social">
-                <a href="#"><i class="ri-linkedin-fill"></i></a>
-                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="https://www.linkedin.com/in/shristi-sinha-79066b252/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/shristiii_sinha/"><i class="ri-instagram-line"></i></a>
               </div>
             </div> 
             <div class="team__card reveal">
@@ -3237,8 +3252,8 @@
                 <p>Lead</p>
               </div>
               <div class="team__social">
-                <a href="#"><i class="ri-linkedin-fill"></i></a>
-                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="https://www.linkedin.com/in/kartikay-pandey-1a092530b/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/kartikay_17/"><i class="ri-instagram-line"></i></a>
               </div>
             </div>
             <div class="team__card reveal">
@@ -3248,8 +3263,8 @@
                 <p>Lead</p>
               </div>
               <div class="team__social">
-                <a href="#"><i class="ri-linkedin-fill"></i></a>
-                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="https://www.linkedin.com/in/soumasree-mukherjee-235a811a0/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/soumasree_m/"><i class="ri-instagram-line"></i></a>
               </div>
             </div>
             <div class="team__card reveal">
@@ -3259,8 +3274,8 @@
                 <p>Associate Lead</p>
               </div>
               <div class="team__social">
-                <a href="#"><i class="ri-linkedin-fill"></i></a>
-                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="https://www.linkedin.com/in/jahanvi-singh-459965283/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/jahanv1_/"><i class="ri-instagram-line"></i></a>
               </div> 
             </div> 
           <div class="team__card reveal">
@@ -3270,8 +3285,8 @@
                 <p>Associate Lead</p>
               </div>
               <div class="team__social">
-                <a href="#"><i class="ri-linkedin-fill"></i></a>
-                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="https://www.linkedin.com/in/sachin-kalyan-kumar/"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://www.instagram.com/sachinn.kalyan/"><i class="ri-instagram-line"></i></a>
               </div> 
             </div>
           </div>
@@ -3666,8 +3681,16 @@
 
     sections.forEach(sec => sectionObserver.observe(sec));
 
-  });
+    // ------------------------
+    // Mobile Fix
+    // ------------------------
+    if (window.innerWidth < 768) {
+      document.querySelectorAll('.fade-section, .reveal').forEach(el => {
+        el.classList.add('active');
+      });
+    }
 
+  });
 
   // ------------------------
   // 11. Logo Click - MOSAIC
