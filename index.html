@@ -103,7 +103,7 @@
         height: 4px;
         background: rgba(255, 0, 0, 0.7);
         border-radius: 50%;
-        animation: floatUp linear infinite;
+        animation: floatUp 18s linear infinite;
       }
 
       @keyframes floatUp {
@@ -123,7 +123,7 @@
         padding: 5.5rem 1.5rem;
         position: relative;
         border-radius: var(--radius-lg);
-        transition: all 0.3s ease;
+        transition: opacity 0.3s ease, transform 0.3s ease;
       }
 
       .container-wide {
@@ -184,7 +184,7 @@
         background: linear-gradient(145deg, #7a0404, #540101);
         border-radius: 10px;
         cursor: pointer;
-        transition: 0.3s;
+        transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         box-shadow: var(--shadow-red);
         letter-spacing: 0.3px;
       }
@@ -226,8 +226,8 @@
       padding: 0.9rem 1.6rem;
 
       background: rgba(15, 15, 15, 0.6);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
 
       border: 1px solid rgba(255, 0, 0, 0.28);
       border-radius: 14px;
@@ -368,6 +368,11 @@
         margin-bottom: 1.25rem;
       }
 
+      .explore__header .section__header {
+        left: 0;
+        transform: none;
+      }
+
       .explore__nav {
         display: flex;
         align-items: center;
@@ -400,13 +405,164 @@
         display: flex;
         gap: 2rem;
         padding: 2rem 0.5rem;
-        animation: scroll 30s linear infinite;
+        animation: scroll 40s linear infinite;
         width: max-content;
-        will-change: transform; /* Performance optimization */
       }
 
       .explore__grid:hover {
         animation-play-state: paused;
+      }
+
+      .sponsor__container {
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 3rem;
+      }
+
+      .sponsor__header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .sponsor__header .section__header {
+        left: 0;
+        transform: none;
+      }
+
+      .sponsor__subheader {
+        max-width: 760px;
+        margin: 0 auto 1rem;
+        text-align: center;
+        color: var(--text_light);
+      }
+
+      .sponsor__grid {
+        display: flex;
+        gap: 1.25rem;
+        padding: 2rem 0.5rem 1rem;
+        width: max-content;
+        animation: sponsorScroll 32s linear infinite;
+      }
+
+      .sponsor__grid:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes sponsorScroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-220px * 6 - 7.5rem));
+        }
+      }
+
+      .sponsor__card {
+        flex: 0 0 220px;
+        height: 180px;
+        padding: 1rem;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(17, 17, 18, 0.96) 0%, rgba(8, 8, 9, 0.98) 100%);
+        border: 1px solid rgba(255, 0, 0, 0.16);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .sponsor__card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top, rgba(255, 0, 0, 0.12), transparent 55%);
+        opacity: 0.75;
+        pointer-events: none;
+      }
+
+      .sponsor__card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 0, 0, 0.35);
+        box-shadow: 0 18px 34px rgba(137, 1, 1, 0.26);
+      }
+
+      .sponsor__logo {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.6rem;
+        text-align: center;
+      }
+
+      .sponsor__logo img {
+        width: 100%;
+        height: 92px;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
+      }
+
+      .sponsor__card--title img {
+        height: 100px;
+      }
+
+      .sponsor__name {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--white);
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
+
+      .sponsor__role {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.66);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 768px) {
+        .sponsor__grid {
+          gap: 1rem;
+          animation-duration: 18s;
+        }
+
+        .sponsor__card {
+          flex-basis: 190px;
+          height: 165px;
+        }
+
+        @keyframes sponsorScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-190px * 6 - 6rem));
+          }
+        }
+      }
+
+      @media (max-width: 480px) {
+        .sponsor__card {
+          flex-basis: 168px;
+          height: 150px;
+        }
+
+        .sponsor__logo img {
+          height: 76px;
+        }
+
+        .sponsor__card--title img {
+          height: 84px;
+        }
       }
 
       @keyframes scroll {
@@ -498,7 +654,7 @@
 
       .class__image {
         position: relative;
-        min-height: 500px;
+        min-height: 560px;
         z-index: 1;
       }
 
@@ -506,9 +662,10 @@
         position: absolute;
         right: 0;
         top: 0;
-        max-width: 500px;
+        max-width: 560px;
         border-radius: 10px;
         box-shadow: 0 10px 30px rgba(137, 1, 1, 0.3);
+        filter: brightness(1.08) contrast(1.06) saturate(1.04);
         transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
         z-index: 1;
       }
@@ -517,9 +674,10 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        max-width: 350px;
+        max-width: 420px;
         border-radius: 10px;
         box-shadow: 0 10px 30px rgba(137, 1, 1, 0.3);
+        filter: brightness(1.1) contrast(1.08) saturate(1.08);
         transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
         z-index: 2;
       }
@@ -1784,7 +1942,7 @@
           grid-template-columns: 1fr;
         }
         .class__image {
-          min-height: 500px;
+          min-height: 540px;
         }
         .footer__container {
           grid-template-columns: repeat(2, 1fr);
@@ -2402,20 +2560,20 @@
       </div>
 
       <div class="pause-text">
-        "Ideas Worth Sharing."
+        "Ideas Worth Spreading."
       </div>
     </section>
 
     <section id="mosaic" class="section__container container-wide class__container fade-section">
       <div class="class__image reveal-left">
         <span class="bg__blur"></span>
-        <img src="Big One .png" alt="class" class="class__img-1" />
-        <img src="small one.png" alt="class" class="class__img-2" />
+        <img src="Website Poster (2).png" alt="class" class="class__img-1" />
+        <img src="ticket (2).png" alt="class" class="class__img-2" />
       </div>
       <div class="class__content reveal">
         <h2 class="section__header"><span style="color: red;">MOSAIC </span>: FRAGMENTS OF BECOMING</h2>
         <p>
-          Mosaic, the flagship theme of TEDxSRMIST, celebrates the idea that we are shaped not by a single moment, but by countless fragments—experiences, choices, failures, and growth. Join us on <span style="color: red;">April 10, 2026</span> at 9 am IST, as we explore the pieces that define us—where every story, encounter, and turning point comes together to form a mosaic that is imperfect, evolving, and uniquely ours. <span style="color: red;">Phase 1 tickets</span> are available at <span style="color: red;">₹199</span> only. 
+          Mosaic, the flagship theme of TEDxSRMIST, celebrates the idea that we are shaped not by a single moment, but by countless fragments—experiences, choices, failures, and growth. Join us on <span style="color: red;">April 10, 2026</span> at 9 am IST, as we explore the pieces that define us—where every story, encounter, and turning point comes together to form a mosaic that is imperfect, evolving, and uniquely ours. <span style="color: red;">Phase 1 tickets</span> are available at <span style="color: red;">₹249</span> only. 
         </p>
         <!-- Modern Timer Section -->
         <div class="timer-container">
@@ -2438,6 +2596,137 @@
         </div>
         <!-- Centered Buy Ticket button -->
         <button class="btn" onclick="showRegistrationModal()">Buy Ticket</button>
+      </div>
+    </section>
+
+    <section id="sponsors" class="section__container container-wide sponsor__container fade-section">
+      <div class="sponsor__header">
+        <h2 class="section__header">OUR SPONSORS</h2>
+      </div>
+      <p class="sponsor__subheader reveal">
+        Partners helping us build TEDxSRMIST 2026.
+      </p>
+
+      <div class="sponsor__grid">
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="eatmynews.jpeg" alt="Media Partner - Eat My News" />
+            <div>
+              <div class="sponsor__role">Media Partner</div>
+              <div class="sponsor__name">Eat My News</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="EaseMyTrip Logo (2) (1)_page-0001.jpg" alt="Travel Partner - Ease My Trip" />
+            <div>
+              <div class="sponsor__role">Travel Partner</div>
+              <div class="sponsor__name">Ease My Trip</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="MS-talks-logo1b.jpg.jpeg" alt="Silver Sponsor - MS Talks" />
+            <div>
+              <div class="sponsor__role">Silver Sponsor</div>
+              <div class="sponsor__name">MS Talks</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="boko.jpeg" alt="Gifting Partner - Boko Eco" />
+            <div>
+              <div class="sponsor__role">Gifting Partner</div>
+              <div class="sponsor__name">Boko Eco</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="MYOP LOGO WHITE PNG.png" alt="Gifting Partner - MyOP" />
+            <div>
+              <div class="sponsor__role">Gifting Partner</div>
+              <div class="sponsor__name">MyOP</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card sponsor__card--title reveal">
+          <div class="sponsor__logo">
+            <img src="LOGO_TRANSPARENT.png" alt="Title Sponsor - Zirise.com" />
+            <div>
+              <div class="sponsor__role">Title Sponsor</div>
+              <div class="sponsor__name">Zirise.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="eatmynews.jpeg" alt="Media Partner - Eat My News" />
+            <div>
+              <div class="sponsor__role">Media Partner</div>
+              <div class="sponsor__name">Eat My News</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="EaseMyTrip Logo (2) (1)_page-0001.jpg" alt="Travel Partner - Ease My Trip" />
+            <div>
+              <div class="sponsor__role">Travel Partner</div>
+              <div class="sponsor__name">Ease My Trip</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="MS-talks-logo1b.jpg.jpeg" alt="Silver Sponsor - MS Talks" />
+            <div>
+              <div class="sponsor__role">Silver Sponsor</div>
+              <div class="sponsor__name">MS Talks</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="boko.jpeg" alt="Gifting Partner - Boko Eco" />
+            <div>
+              <div class="sponsor__role">Gifting Partner</div>
+              <div class="sponsor__name">Boko Eco</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card reveal">
+          <div class="sponsor__logo">
+            <img src="MYOP LOGO WHITE PNG.png" alt="Gifting Partner - MyOP" />
+            <div>
+              <div class="sponsor__role">Gifting Partner</div>
+              <div class="sponsor__name">MyOP</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor__card sponsor__card--title reveal">
+          <div class="sponsor__logo">
+            <img src="LOGO_TRANSPARENT.png" alt="Title Sponsor - Zirise.com" />
+            <div>
+              <div class="sponsor__role">Title Sponsor</div>
+              <div class="sponsor__name">Zirise.com</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -3320,7 +3609,7 @@
       <div class="footer__col">
         <div class="footer__logo"><img src="logo.jpeg" alt="logo" /></div>
         <p>
-          Join us at TEDxSRMIST for a day of inspiration, innovation, and ideas worth spreading. Let's explore the frontiers of human knowledge together!
+          Join us at TEDxSRMIST for a day of inspiration, innovation, and ideas worth sharing. Let's explore the frontiers of human knowledge together!
         </p>
         <div class="footer__socials">
           <a href="https://www.instagram.com/tedxsrmist/"><i class="ri-instagram-line"></i></a>
@@ -3356,7 +3645,7 @@
   <div class="registration-container">
     <button class="close-registration" onclick="closeRegistrationModal()">✖</button>
     <div class="registration-header">
-      <img src="cosmos.webp" alt="TEDxSRMIST Event Banner">
+      <img src="ticket (2).png" alt="TEDxSRMIST Event Banner">
       <h2>Common Registrations</h2>
     </div>
     <div class="registration-content">
@@ -3493,7 +3782,7 @@
 
     if (payNowButton) {
       payNowButton.addEventListener("click", function () {
-        window.location.href = "https://pages.razorpay.com/pl_Q4Io1aJSRIhLaR/view";
+        window.location.href = "https://pages.razorpay.com/pl_SYOimfoLEeCGb6/view";
       });
     }
 
