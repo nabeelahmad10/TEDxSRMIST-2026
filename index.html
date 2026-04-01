@@ -2313,6 +2313,50 @@
         transform: translateX(0);
       }
 
+      @media (max-width: 768px) {
+        .particles,
+        .cursor-glow {
+          display: none;
+        }
+
+        .explore__grid,
+        .sponsor__grid {
+          animation-duration: 48s;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+
+        .particles,
+        .cursor-glow,
+        .pause-text::after {
+          display: none !important;
+        }
+
+        .explore__grid,
+        .sponsor__grid {
+          animation: none !important;
+          transform: none !important;
+        }
+
+        .fade-section,
+        .reveal,
+        .reveal-left,
+        .reveal-right {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+      }
+
 
       /* Page Fade */
       .fade-section {
@@ -3727,6 +3771,7 @@
       easing: "ease-in-out",
       once: true,
       mirror: false,
+      disable: "mobile",
     });
 
     // ------------------------
@@ -4034,7 +4079,9 @@
   const particlesContainer = document.querySelector('.particles');
 
   if (particlesContainer) {
-    for (let i = 0; i < 40; i++) {
+    var particleCount = window.innerWidth < 768 ? 0 : 16;
+
+    for (let i = 0; i < particleCount; i++) {
       let particle = document.createElement('span');
 
       let size = Math.random() * 4 + 2;
@@ -4053,8 +4100,9 @@
   // 13. Cursor Glow 
   // ------------------------
   const glow = document.querySelector(".cursor-glow");
+  const canUseCursorGlow = glow && window.innerWidth >= 768 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (glow) {
+  if (canUseCursorGlow) {
     document.addEventListener("mousemove", (e) => {
       glow.style.left = e.clientX + "px";
       glow.style.top = e.clientY + "px";
@@ -4068,23 +4116,26 @@
     "button, .btn, .explore__nav span, .domain__tab, .verify-btn, .payment-btn, .close-banner, .hamburger, .close-menu, .close-registration, .speaker-tab"
   );
 
-  interactiveElements.forEach(el => {
-    el.addEventListener("mouseenter", () => {
-      glow.style.background = "#000"; // black
-    });
+  if (canUseCursorGlow) {
+    interactiveElements.forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        glow.style.background = "#000"; // black
+      });
 
-    el.addEventListener("mouseleave", () => {
-      glow.style.background = "#8b0000"; // back to red
+      el.addEventListener("mouseleave", () => {
+        glow.style.background = "#8b0000"; // back to red
+      });
     });
-  });
+  }
 
   // ------------------------
   // 15. Active Navbar Highlight on Scroll
   // ------------------------
   const sectionsAll = document.querySelectorAll("section[id]");
   const navLinksAll = document.querySelectorAll(".nav__links a");
+  let scrollTicking = false;
 
-  window.addEventListener("scroll", () => {
+  function updateActiveNavLink() {
     let current = "";
 
     sectionsAll.forEach(section => {
@@ -4103,7 +4154,19 @@
         link.classList.add("active");
       }
     });
-  });
+  }
+
+  window.addEventListener("scroll", () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+
+    window.requestAnimationFrame(() => {
+      updateActiveNavLink();
+      scrollTicking = false;
+    });
+  }, { passive: true });
+
+  updateActiveNavLink();
 
   // ------------------------
   // 16. Floating Idea Field (PAUSE SECTION)
